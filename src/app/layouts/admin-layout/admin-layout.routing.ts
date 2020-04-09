@@ -8,9 +8,26 @@ import { TablesComponent } from '../../pages/tables/tables.component';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
 
 export const AdminLayoutRoutes: Routes = [
-    { path: 'dashboard',      component: DashboardComponent, canActivate: [AuthGuardService] },
-    { path: 'user-profile',   component: UserProfileComponent, canActivate: [AuthGuardService] },
-    { path: 'tables',         component: TablesComponent, canActivate: [AuthGuardService] },
-    { path: 'icons',          component: IconsComponent, canActivate: [AuthGuardService] },
-    { path: 'maps',           component: MapsComponent, canActivate: [AuthGuardService] }
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuardService],
+  },
+  {
+    path: 'user-profile',
+    component: UserProfileComponent,
+    canActivate: [AuthGuardService],
+  },
+  {
+    path: 'tables',
+    component: TablesComponent,
+    canActivate: [AuthGuardService],
+  },
+  { path: 'icons', component: IconsComponent, canActivate: [AuthGuardService] },
+  { path: 'maps', component: MapsComponent, canActivate: [AuthGuardService] },
+  {
+    path: 'tipo-categoria',
+    loadChildren:
+      '../../pages/tipo-categoria/tipo-categoria.module#TipoCategoriaModule',
+  },
 ];

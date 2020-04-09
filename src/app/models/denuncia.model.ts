@@ -1,8 +1,8 @@
 import { Usuario } from './usuario.model';
 import { Deserializable } from './deserializable.model';
+import { BaseModel } from './base.model';
 
-export class Denuncia implements Deserializable {
-  public id?: number;
+export class Denuncia extends BaseModel implements Deserializable {
   public dataCadastro?: Date;
   public status?: string;
   public titulo?: string;
@@ -12,6 +12,11 @@ export class Denuncia implements Deserializable {
   public longitude?: number;
   public denunciado?: string;
   public denunciante?: Usuario;
+
+  static fromJson(json: any): Denuncia {
+    if (json === undefined || json === null) { return null; }
+    return Object.assign(new Denuncia(), json);
+  }
 
   deserialize(input: any): this {
     Object.assign(this, input);

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  URL_GATEWAY: 'http://localhost:8080'
+  URL_GATEWAY: 'https://ambienta-server.herokuapp.com'
 };
 
 /*

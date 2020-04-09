@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
-import { ROUTES } from '../sidebar/sidebar.component';
+import { ROUTES, ROUTES_ADMIN } from '../sidebar/sidebar.component';
 import {
   Location,
   LocationStrategy,
@@ -16,6 +16,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 export class NavbarComponent implements OnInit {
   public focus;
   public listTitles: any[];
+  public listAdminTitles: any[];
   public location: Location;
   constructor(
     location: Location,
@@ -28,6 +29,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.listTitles = ROUTES.filter((listTitle) => listTitle);
+    this.listAdminTitles = ROUTES_ADMIN.filter((listTitle) => listTitle);
   }
   getTitle() {
     let titlee = this.location.prepareExternalUrl(this.location.path());
@@ -40,6 +42,13 @@ export class NavbarComponent implements OnInit {
         return this.listTitles[item].title;
       }
     }
+
+    for (let item = 0; item < this.listAdminTitles.length; item++) {
+      if (this.listAdminTitles[item].path === titlee) {
+        return this.listAdminTitles[item].title;
+      }
+    }
+
     return 'Dashboard';
   }
 }

@@ -15,6 +15,12 @@ export const ROUTES: RouteInfo[] = [
     { path: '/tables', title: 'Tables',  icon:'ni-bullet-list-67 text-red', class: '' }
 ];
 
+export const ROUTES_ADMIN: RouteInfo[] = [
+  { path: '/tipo-categoria', title: 'Tipo categoria',  icon:'ni-bullet-list-67 text-red', class: '' },
+  { path: '/categoria', title: 'Categoria',  icon:'ni-bullet-list-67 text-red', class: '' },
+  { path: '/orgao', title: 'Órgão',  icon:'ni-bullet-list-67 text-red', class: '' }
+];
+
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -23,12 +29,14 @@ export const ROUTES: RouteInfo[] = [
 export class SidebarComponent implements OnInit {
 
   public menuItems: any[];
+  public menuAdminItems: any[];
   public isCollapsed = true;
 
   constructor(private router: Router) { }
 
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
+    this.menuAdminItems = ROUTES_ADMIN.filter(menuItem => menuItem);
     this.router.events.subscribe((event) => {
       this.isCollapsed = true;
    });

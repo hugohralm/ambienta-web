@@ -1,6 +1,8 @@
+import { LocationService } from './../../services/location.service';
 import { Denuncia } from './../../models/denuncia.model';
 import { Component, OnInit } from '@angular/core';
-import { DenunciaAnonimaService } from 'src/app/services/denuncia-anonima.service';
+import { DenunciaService } from 'src/app/services/denuncia.service';
+
 declare const google: any;
 
 @Component({
@@ -10,17 +12,21 @@ declare const google: any;
 })
 export class MapsComponent implements OnInit {
   denuncias: Denuncia[] = [];
+  lat = '-16.6809646';
+  lng = '-49.2557582';
 
   constructor(
-    private denunciaAnonimaService: DenunciaAnonimaService
-  ) { }
+    private denunciaService: DenunciaService,
+    private locationService: LocationService
+  ) {}
 
   ngOnInit() {
-    this.carregarDenunciasAnonimas();
+    this.carregarDenuncias();
+    this.carregarLocation();
   }
 
-  private carregarDenunciasAnonimas(): void {
-    this.denunciaAnonimaService.getAll().subscribe(
+  private carregarDenuncias(): void {
+    this.denunciaService.getAll().subscribe(
       denuncias => {
         this.denuncias = denuncias;
         this.carregarMapa();
@@ -28,12 +34,17 @@ export class MapsComponent implements OnInit {
     );
   }
 
+  private carregarLocation(): void {
+    this.locationService.getPosition().then(pos => {
+        this.lat = pos.lat;
+        this.lng = pos.lng;
+      });
+  }
+
   private carregarMapa(): void {
     let map = document.getElementById('map-canvas');
-    const lat = map.getAttribute('data-lat');
-    const lng = map.getAttribute('data-lng');
 
-    const myLatlng = new google.maps.LatLng(lat, lng);
+    const myLatlng = new google.maps.LatLng(this.lat, this.lng);
     const mapOptions = {
         zoom: 17,
         scrollwheel: false,
