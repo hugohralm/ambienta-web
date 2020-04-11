@@ -4,6 +4,11 @@
     <!-- Table -->
     <div class="row">
         <div class="col">
+            <div class="row justify-content-end" style="margin-bottom: -25px;">
+                <button mat-fab color="primary" [routerLink]="'new'">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
             <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
                 <!-- Position Column -->
                 <ng-container matColumnDef="id">
