@@ -5,21 +5,28 @@
             <mat-card-title>Tipo de categoria</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-                <div class="col" [formGroup]="form">
-                    <div class="row">
-                        <mat-form-field appearance="outline" class="col-12">
-                            <mat-label>Nome</mat-label>
-                            <input matInput maxlength="255" formControlName="nome" required>
-                        </mat-form-field>
-                    </div>
-                    <div class="row justify-content-end">
-                        <button mat-raised-button type="submit" color="primary"
-                            [disabled]="!form.valid || form.pristine" (click)="salvar()">
-                            <mat-icon>save</mat-icon>
-                            Salvar
-                        </button>
-                    </div>
+            <div class="col" [formGroup]="form">
+                <div class="row">
+                    <mat-form-field appearance="outline" class="col-6">
+                        <mat-label>Nome</mat-label>
+                        <input matInput maxlength="255" formControlName="nome" required>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="col-6">
+                        <mat-label>Ativo</mat-label>
+                        <mat-select formControlName="ativo" required>
+                            <mat-option [value]="true">Sim</mat-option>
+                            <mat-option [value]="false">Não</mat-option>
+                        </mat-select>
+                    </mat-form-field>
                 </div>
+                <div class="row justify-content-end">
+                    <button mat-raised-button type="submit" color="primary" [disabled]="!form.valid || form.pristine"
+                        (click)="salvar()">
+                        <mat-icon>save</mat-icon>
+                        Salvar
+                    </button>
+                </div>
+            </div>
         </mat-card-content>
     </mat-card>
 </div>

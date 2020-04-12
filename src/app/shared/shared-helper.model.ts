@@ -1,4 +1,7 @@
 import { MatSnackBar } from '@angular/material/snack-bar';
+import {MatDialog} from "@angular/material/dialog";
+import {ConfirmarExclusaoDialogComponent} from "../components/confirmar-exclusao-dialog/confirmar-exclusao-dialog.component";
+import {Observable, Observer, Subscription} from "rxjs";
 
 export class SharedHelper{
 
@@ -8,4 +11,13 @@ export class SharedHelper{
             verticalPosition: 'top'
         });
     }
-} 
+
+    public static showDeleteDialog(dialog: MatDialog, label: string): Observable<any>{
+      const dialogRef = dialog.open(ConfirmarExclusaoDialogComponent, {
+        width: '400px',
+        data: { label: label }
+      });
+
+      return dialogRef.afterClosed();
+    }
+}

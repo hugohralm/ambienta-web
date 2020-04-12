@@ -9,33 +9,34 @@
                     <mat-icon>add</mat-icon>
                 </button>
             </div>
-            <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
                 <!-- Position Column -->
-                <ng-container matColumnDef="id">
-                    <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+                <ng-container  matColumnDef="id" >
+                    <mat-header-cell mat-sort-header *matHeaderCellDef > ID </mat-header-cell>
                     <mat-cell *matCellDef="let item"> {{item.id}} </mat-cell>
                 </ng-container>
 
                 <!-- Name Column -->
                 <ng-container matColumnDef="nome">
-                    <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Nome </mat-header-cell>
                     <mat-cell *matCellDef="let item"> {{item.nome}} </mat-cell>
                 </ng-container>
 
                 <!-- Weight Column -->
                 <ng-container matColumnDef="ativo">
-                    <mat-header-cell *matHeaderCellDef> Ativo </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Ativo </mat-header-cell>
                     <mat-cell *matCellDef="let item">
-                        <mat-icon *ngIf="item.ativo" class="active-icon green-600 s-16">check</mat-icon>
-                        <mat-icon *ngIf="!item.ativo" class="active-icon red-500 s-16">close</mat-icon>
+                        <mat-icon *ngIf="item.ativo" style="color: green;">check</mat-icon>
+                        <mat-icon *ngIf="!item.ativo" style="color: red;">close</mat-icon>
                     </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="actions">
                     <mat-header-cell *matHeaderCellDef></mat-header-cell>
                     <mat-cell *matCellDef="let item">
-                        <div fxFlex="row" fxLayoutAlign="end center">
-                            <button mat-icon-button [matMenuTriggerFor]="moreMenu" aria-label="More" (click)="$event.stopPropagation();">
+                        <div>
+                            <button mat-icon-button [matMenuTriggerFor]="moreMenu" aria-label="More"
+                                (click)="$event.stopPropagation();">
                                 <mat-icon class="secondary-text">more_vert</mat-icon>
                             </button>
 

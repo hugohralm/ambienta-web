@@ -5,17 +5,21 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {ConfirmarExclusaoDialogComponent} from "./confirmar-exclusao-dialog/confirmar-exclusao-dialog.component";
+import {MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
-    NgbModule
+    NgbModule,
+    MatDialogModule
   ],
   declarations: [
     FooterComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    ConfirmarExclusaoDialogComponent
   ],
   exports: [
     FooterComponent,

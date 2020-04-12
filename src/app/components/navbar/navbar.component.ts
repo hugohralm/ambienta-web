@@ -38,13 +38,13 @@ export class NavbarComponent implements OnInit {
     }
 
     for (let item = 0; item < this.listTitles.length; item++) {
-      if (this.listTitles[item].path === titlee) {
+      if (titlee.includes(this.listTitles[item].path)) {
         return this.listTitles[item].title;
       }
     }
 
     for (let item = 0; item < this.listAdminTitles.length; item++) {
-      if (this.listAdminTitles[item].path === titlee) {
+      if (titlee.includes(this.listAdminTitles[item].path)) {
         return this.listAdminTitles[item].title;
       }
     }

@@ -12,21 +12,25 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatInputModule } from "@angular/material/input";
 import { MatCardModule } from "@angular/material/card";
+import { MatSelectModule } from '@angular/material/select';
+import {MatSortModule} from "@angular/material/sort";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    TipoCategoriaRoutingModule,
-    MatTableModule,
-    MatMenuModule,
-    MatIconModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    ReactiveFormsModule,
-    MatSnackBarModule,
-    MatInputModule,
-    MatCardModule
-  ],
+    imports: [
+        CommonModule,
+        TipoCategoriaRoutingModule,
+        MatTableModule,
+        MatMenuModule,
+        MatIconModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        MatSnackBarModule,
+        MatInputModule,
+        MatCardModule,
+        MatSelectModule,
+        MatSortModule
+    ],
   declarations: [TipoCategoriaListComponent, TipoCategoriaFormComponent]
 })
 export class TipoCategoriaModule { }
