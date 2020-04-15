@@ -3,14 +3,14 @@ import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { Injector } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Page } from '../models/page.model';
+import { Page } from '../../models/page.model';
 import { BaseModel } from '../models/base.model';
 
 export abstract class BaseService<T extends BaseModel> {
     protected http: HttpClient;
     urlResource: string = environment.URL_GATEWAY;
 
-    constructor(
+    protected constructor(
         protected apiPath: string,
         protected injector: Injector,
         protected type: T,

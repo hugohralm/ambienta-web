@@ -9,22 +9,22 @@
                     <mat-icon>add</mat-icon>
                 </button>
             </div>
-            <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+            <mat-table [dataSource]="resources" class="mat-elevation-z8">
                 <!-- Position Column -->
                 <ng-container  matColumnDef="id" >
-                    <mat-header-cell mat-sort-header *matHeaderCellDef > ID </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef > ID </mat-header-cell>
                     <mat-cell *matCellDef="let item"> {{item.id}} </mat-cell>
                 </ng-container>
 
                 <!-- Name Column -->
                 <ng-container matColumnDef="nome">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> Nome </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef > Nome </mat-header-cell>
                     <mat-cell *matCellDef="let item"> {{item.nome}} </mat-cell>
                 </ng-container>
 
                 <!-- Weight Column -->
                 <ng-container matColumnDef="ativo">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> Ativo </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef> Ativo </mat-header-cell>
                     <mat-cell *matCellDef="let item">
                         <mat-icon *ngIf="item.ativo" style="color: green;">check</mat-icon>
                         <mat-icon *ngIf="!item.ativo" style="color: red;">close</mat-icon>
@@ -45,7 +45,7 @@
                                     <mat-icon>edit</mat-icon>
                                     <span>Editar</span>
                                 </button>
-                                <button mat-menu-item aria-label="delete" (click)="excluirDialog(item)">
+                                <button mat-menu-item aria-label="delete" (click)="deleteResource(item)">
                                     <mat-icon>delete</mat-icon>
                                     <span>Excluir</span>
                                 </button>

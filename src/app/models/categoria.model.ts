@@ -1,7 +1,7 @@
 import { Deserializable } from './deserializable.model';
-import { BaseModel } from './base.model';
+import { BaseModel } from '../shared/models/base.model';
 import { Orgao } from './orgao.model';
-import { TipoCategoria } from './tipo-categoria.model';
+import { TipoCategoria } from '../pages/tipo-categoria/shared/tipo-categoria.model';
 
 export class Categoria extends BaseModel implements Deserializable {
   public tipo?: TipoCategoria;

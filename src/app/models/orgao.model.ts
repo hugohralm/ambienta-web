@@ -1,5 +1,5 @@
 import { Deserializable } from './deserializable.model';
-import { BaseModel } from './base.model';
+import { BaseModel } from '../shared/models/base.model';
 
 export class Orgao extends BaseModel implements Deserializable {
   public nome?: string;

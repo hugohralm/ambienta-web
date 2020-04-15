@@ -1,7 +1,7 @@
-import { Orgao } from './../models/orgao.model';
+import { Orgao } from '../models/orgao.model';
 
 import { Injectable, Injector } from '@angular/core';
-import { BaseService } from './base.service';
+import { BaseService } from '../shared/services/base.service';
 
 @Injectable({ providedIn: 'root' })
 export class OrgaoService extends BaseService<Orgao> {

@@ -1,7 +1,7 @@
-import { Categoria } from './../models/categoria.model';
+import { Categoria } from '../models/categoria.model';
 
 import { Injectable, Injector } from '@angular/core';
-import { BaseService } from './base.service';
+import { BaseService } from '../shared/services/base.service';
 
 @Injectable({ providedIn: 'root' })
 export class CategoriaService extends BaseService<Categoria> {

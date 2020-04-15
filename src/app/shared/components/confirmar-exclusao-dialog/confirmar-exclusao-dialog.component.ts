@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 export interface ExcludeData {
   id: any;
   label: string;
@@ -11,12 +11,12 @@ export interface ExcludeData {
   styleUrls: ['./confirmar-exclusao-dialog.component.scss']
 })
 export class ConfirmarExclusaoDialogComponent {
-  confirmAction: boolean = false;
+  confirmAction = false;
 
   constructor(
       public dialogRef: MatDialogRef<ConfirmarExclusaoDialogComponent>,
       @Inject(MAT_DIALOG_DATA) public data: ExcludeData
-  ){}
+  ) {}
 
   onNoClick(): void {
     this.dialogRef.close(false);
@@ -24,5 +24,4 @@ export class ConfirmarExclusaoDialogComponent {
   confirm() {
     this.dialogRef.close(true);
   }
-
 }

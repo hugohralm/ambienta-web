@@ -1,7 +1,10 @@
-import { LocationService } from './../../services/location.service';
-import { Denuncia } from './../../models/denuncia.model';
+import { LocationService } from '../../services/location.service';
+import { Denuncia } from '../../models/denuncia.model';
 import { Component, OnInit } from '@angular/core';
 import { DenunciaService } from 'src/app/services/denuncia.service';
+import {BaseResourceListComponent} from '../../shared/components/base-resource-list/base-resource-list.component';
+import {TipoCategoria} from '../tipo-categoria/shared/tipo-categoria.model';
+import {TipoCategoriaService} from '../tipo-categoria/shared/tipo-categoria.service';
 
 declare const google: any;
 
@@ -10,28 +13,20 @@ declare const google: any;
   templateUrl: './maps.component.html',
   styleUrls: ['./maps.component.scss']
 })
-export class MapsComponent implements OnInit {
-  denuncias: Denuncia[] = [];
+export class MapsComponent extends BaseResourceListComponent<Denuncia> {
   lat = '-16.6809646';
   lng = '-49.2557582';
 
   constructor(
     private denunciaService: DenunciaService,
     private locationService: LocationService
-  ) {}
-
-  ngOnInit() {
-    this.carregarDenuncias();
+  ) {
+    super(denunciaService);
     this.carregarLocation();
   }
 
-  private carregarDenuncias(): void {
-    this.denunciaService.getAll().subscribe(
-      denuncias => {
-        this.denuncias = denuncias;
-        this.carregarMapa();
-      }
-    );
+  protected afterResourceLoad(): void {
+    this.carregarMapa();
   }
 
   private carregarLocation(): void {
@@ -61,7 +56,7 @@ export class MapsComponent implements OnInit {
     let marker;
     const infowindow = new google.maps.InfoWindow;
 
-    this.denuncias.forEach(
+    this.resources.forEach(
       denuncia => {
         marker = new google.maps.Marker({
           position: new google.maps.LatLng(denuncia.latitude, denuncia.longitude),
