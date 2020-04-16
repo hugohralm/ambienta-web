@@ -38,10 +38,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     if (this.loginForm.invalid) {
       return;
     }
-
-    // this.login = this.form.cpf.value.match(/\d+/g).join('');
+    const cpf = this.form.cpf.value.match(/\d+/g).join('');
     this.authenticationService
-      .login(this.loginForm.get('cpf').value, this.loginForm.get('senha').value)
+      .login(cpf, this.loginForm.get('senha').value)
       .subscribe(
         () => {
           this.router.navigate(['/dashboard']);

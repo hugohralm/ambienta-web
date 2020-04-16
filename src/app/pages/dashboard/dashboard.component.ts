@@ -1,65 +1,73 @@
-import { Component, OnInit } from '@angular/core';
-import Chart from 'chart.js';
+import {Component} from '@angular/core';
+import {BaseResourceListComponent} from '../../shared/components/base-resource-list/base-resource-list.component';
+import {Denuncia} from '../../models/denuncia.model';
+import {DenunciaService} from '../../services/denuncia.service';
+import {LocationService} from '../../services/location.service';
 
-// core components
-import {
-  chartOptions,
-  parseOptions,
-  chartExample1,
-  chartExample2
-} from "../../variables/charts";
+declare const google: any;
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent extends BaseResourceListComponent<Denuncia> {
+  lat = '-16.6809646';
+  lng = '-49.2557582';
 
-  public datasets: any;
-  public data: any;
-  public salesChart;
-  public clicked: boolean = true;
-  public clicked1: boolean = false;
+  constructor(
+    private denunciaService: DenunciaService,
+    private locationService: LocationService
+  ) {
+    super(denunciaService);
+    this.carregarLocation();
+  }
 
-  constructor() { }
+  protected afterResourceLoad(): void {
+    this.carregarMapa();
+  }
 
-  ngOnInit() {
-
-    this.datasets = [
-      [0, 20, 10, 30, 15, 40, 20, 60, 60],
-      [0, 20, 5, 25, 10, 30, 15, 40, 40]
-    ];
-    this.data = this.datasets[0];
-
-
-    var chartOrders = document.getElementById('chart-orders');
-
-    parseOptions(Chart, chartOptions());
-
-
-    var ordersChart = new Chart(chartOrders, {
-      type: 'bar',
-      options: chartExample2.options,
-      data: chartExample2.data
+  private carregarLocation(): void {
+    this.locationService.getPosition().then(pos => {
+      this.lat = pos.lat;
+      this.lng = pos.lng;
     });
-
-    var chartSales = document.getElementById('chart-sales');
-
-    this.salesChart = new Chart(chartSales, {
-			type: 'line',
-			options: chartExample1.options,
-			data: chartExample1.data
-		});
   }
 
+  private carregarMapa(): void {
+    let map = document.getElementById('map-canvas');
 
+    const myLatlng = new google.maps.LatLng(this.lat, this.lng);
+    const mapOptions = {
+      zoom: 17,
+      scrollwheel: false,
+      center: myLatlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
 
+    map = new google.maps.Map(map, mapOptions);
 
-
-  public updateOptions() {
-    this.salesChart.data.datasets[0].data = this.data;
-    this.salesChart.update();
+    this.adicionarMarkers(map);
   }
 
+  private adicionarMarkers(map: HTMLElement): void {
+    let marker;
+    const infowindow = new google.maps.InfoWindow;
+
+    this.resources.forEach(
+      denuncia => {
+        marker = new google.maps.Marker({
+          position: new google.maps.LatLng(denuncia.latitude, denuncia.longitude),
+          map: map
+        });
+
+        google.maps.event.addListener(marker, 'click', (function (mark) {
+          return function () {
+            infowindow.setContent(denuncia.titulo);
+            infowindow.open(map, mark);
+          };
+        })(marker));
+      }
+    );
+  }
 }

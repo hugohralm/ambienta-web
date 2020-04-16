@@ -1,12 +1,11 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
-import { ROUTES } from '../sidebar/sidebar.component';
+import {Component, OnInit, ElementRef} from '@angular/core';
+import {ROUTES, ROUTES_ADMIN} from '../sidebar/sidebar.component';
 import {
-  Location,
-  LocationStrategy,
-  PathLocationStrategy,
+  Location
 } from '@angular/common';
-import { Router } from '@angular/router';
-import { AuthenticationService } from 'src/app/services/authentication.service';
+import {Router} from '@angular/router';
+import {AuthenticationService} from 'src/app/services/authentication.service';
+import {CurrentUser} from '../../models/current-user.model';
 
 @Component({
   selector: 'app-navbar',
@@ -16,7 +15,10 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 export class NavbarComponent implements OnInit {
   public focus;
   public listTitles: any[];
+  public listAdminTitles: any[];
   public location: Location;
+  currentUser: CurrentUser;
+
   constructor(
     location: Location,
     private element: ElementRef,
@@ -28,7 +30,10 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.listTitles = ROUTES.filter((listTitle) => listTitle);
+    this.listAdminTitles = ROUTES_ADMIN.filter((listTitle) => listTitle);
+    this.currentUser = this.authenticationService.currentUserDecode;
   }
+
   getTitle() {
     let titlee = this.location.prepareExternalUrl(this.location.path());
     if (titlee.charAt(0) === '#') {
@@ -36,10 +41,24 @@ export class NavbarComponent implements OnInit {
     }
 
     for (let item = 0; item < this.listTitles.length; item++) {
-      if (this.listTitles[item].path === titlee) {
+      if (titlee.includes(this.listTitles[item].path)) {
         return this.listTitles[item].title;
       }
     }
+
+    for (let item = 0; item < this.listAdminTitles.length; item++) {
+      if (titlee.includes(this.listAdminTitles[item].path)) {
+        return this.listAdminTitles[item].title;
+      }
+    }
+
     return 'Dashboard';
+  }
+
+  logout(): void {
+    this.authenticationService.logout();
+    this.router
+      .navigateByUrl('/', {skipLocationChange: true})
+      .then(() => this.router.navigate(['/login']));
   }
 }
