@@ -1,21 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 import {AuthenticationService} from '../../services/authentication.service';
 
 declare interface RouteInfo {
-    path: string;
-    title: string;
-    icon: string;
-    class: string;
+  path: string;
+  title: string;
+  icon: string;
+  class: string;
 }
+
 export const ROUTES: RouteInfo[] = [
-    { path: '/dashboard', title: 'Dashboard',  icon: 'ni-tv-2 text-primary', class: '' }
+  {path: '/dashboard', title: 'DASHBOARD', icon: 'ni-tv-2 text-primary', class: ''}
 ];
 
 export const ROUTES_ADMIN: RouteInfo[] = [
-  { path: '/orgaos', title: 'Órgão',  icon: 'ni-bullet-list-67 text-red', class: '' },
-  { path: '/tipos-categoria', title: 'Tipo categoria',  icon: 'ni-bullet-list-67 text-red', class: '' },
-  { path: '/categorias', title: 'Categoria',  icon: 'ni-bullet-list-67 text-red', class: '' }
+  {path: '/orgaos', title: 'ÓRGÃO', icon: 'ni-bullet-list-67 text-red', class: ''},
+  {path: '/tipos-categoria', title: 'TIPO CATEGORIA', icon: 'ni-bullet-list-67 text-red', class: ''},
+  {path: '/categorias', title: 'CATEGORIA', icon: 'ni-bullet-list-67 text-red', class: ''}
 ];
 
 @Component({
@@ -29,14 +30,15 @@ export class SidebarComponent implements OnInit {
   public menuAdminItems: any[];
   public isCollapsed = true;
 
-  constructor(private router: Router, private authenticationService: AuthenticationService) { }
+  constructor(private router: Router, private authenticationService: AuthenticationService) {
+  }
 
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
     this.menuAdminItems = ROUTES_ADMIN.filter(menuItem => menuItem);
     this.router.events.subscribe((event) => {
       this.isCollapsed = true;
-   });
+    });
   }
 
   logout(): void {

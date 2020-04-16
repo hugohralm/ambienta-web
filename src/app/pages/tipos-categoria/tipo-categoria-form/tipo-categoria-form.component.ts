@@ -24,11 +24,11 @@ export class TipoCategoriaFormComponent extends BaseResourceFormComponent<TipoCa
   }
 
   protected creationPageTitle(): string {
-    return 'Cadastro de Novo Tipo Categoria';
+    return 'CADASTRO DE NOVO TIPO CATEGORIA';
   }
 
   protected editionPageTitle(): string {
     const tipoCategoriaNome = this.resource.nome || '';
-    return 'Editando Tipo Categoria: ' + tipoCategoriaNome;
+    return 'EDITANDO TIPO CATEGORIA: ' + tipoCategoriaNome;
   }
 }

@@ -25,11 +25,11 @@ export class OrgaoFormComponent extends BaseResourceFormComponent<Orgao> {
   }
 
   protected creationPageTitle(): string {
-    return 'Cadastro de Novo Órgão';
+    return 'CADASTRO DE NOVO ÓRGÃO';
   }
 
   protected editionPageTitle(): string {
     const orgaoNome = this.resource.nome || '';
-    return 'Editando Órgão: ' + orgaoNome;
+    return 'EDITANDO ÓRGÃO: ' + orgaoNome;
   }
 }

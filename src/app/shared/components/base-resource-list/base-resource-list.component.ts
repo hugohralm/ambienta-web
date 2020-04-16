@@ -22,7 +22,10 @@ export abstract class BaseResourceListComponent<T extends BaseResourceModel> imp
         this.dataSource.data = this.resources;
         this.afterResourceLoad();
       },
-      error => alert('Erro ao carregar a lista')
+      error => {
+        alert('Erro ao carregar a lista');
+        this.afterResourceLoadError();
+      }
     );
   }
 
@@ -40,5 +43,8 @@ export abstract class BaseResourceListComponent<T extends BaseResourceModel> imp
   }
 
   protected afterResourceLoad(): void {
+  }
+
+  protected afterResourceLoadError(): void {
   }
 }

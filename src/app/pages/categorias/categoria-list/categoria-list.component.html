@@ -2,14 +2,16 @@
 <!-- Page content -->
 <div class="container-fluid mt--9">
   <!-- Table -->
-  <div class="row">
-    <div class="col">
-      <div class="row justify-content-end" style="margin-bottom: -25px;">
-        <button mat-fab color="primary" [routerLink]="'new'">
-          <mat-icon>add</mat-icon>
-        </button>
-      </div>
-      <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+  <mat-card>
+    <mat-card-title class="d-flex justify-content-between">
+      <div class="align-self-center">CATEGORIA</div>
+      <button mat-raised-button class="d-flex justify-content-between" [routerLink]="'new'">
+        <mat-icon>add</mat-icon>
+        ADICIONAR
+      </button>
+    </mat-card-title>
+    <mat-card-content>
+      <mat-table [dataSource]="dataSource" matSort>
         <!-- Position Column -->
         <ng-container matColumnDef="id">
           <mat-header-cell mat-sort-header *matHeaderCellDef> ID</mat-header-cell>
@@ -69,6 +71,7 @@
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
       </mat-table>
-    </div>
-  </div>
+    </mat-card-content>
+  </mat-card>
 </div>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px', fullScreenBackdrop: true }"></ngx-loading>

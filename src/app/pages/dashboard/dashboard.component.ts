@@ -15,7 +15,7 @@ export class DashboardComponent extends BaseResourceListComponent<Denuncia> {
   lat = '-16.6809646';
   lng = '-49.2557582';
   denunciasAnonimas: Denuncia[] = [];
-
+  public loading = true;
   constructor(
     private denunciaService: DenunciaService,
     private locationService: LocationService
@@ -26,7 +26,6 @@ export class DashboardComponent extends BaseResourceListComponent<Denuncia> {
 
   protected afterResourceLoad(): void {
     this.denunciasAnonimas = this.resources.filter(denuncia => denuncia.cpfDenunciante == null);
-    console.log(this.denunciasAnonimas);
     this.carregarMapa();
   }
 
@@ -80,5 +79,6 @@ export class DashboardComponent extends BaseResourceListComponent<Denuncia> {
         })(marker));
       }
     );
+    this.loading = false;
   }
 }
