@@ -30,7 +30,10 @@ export abstract class BaseResourceListComponent<T extends BaseResourceModel> imp
     const mustDelete = confirm('Deseja realmente excluir este item?');
     if (mustDelete) {
       this.resourceService.delete(resource.id).subscribe(
-        () => this.resources = this.resources.filter(element => element !== resource),
+        () => {
+          this.resources = this.resources.filter(element => element !== resource);
+          this.dataSource.data = this.resources;
+        },
         () => alert('Erro ao tentar excluir!')
       );
     }

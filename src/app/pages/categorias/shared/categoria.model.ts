@@ -1,9 +1,11 @@
-import { Deserializable } from './deserializable.model';
-import { BaseModel } from '../shared/models/base.model';
-import { Orgao } from './orgao.model';
-import { TipoCategoria } from '../pages/tipo-categoria/shared/tipo-categoria.model';
+import { Deserializable } from '../../../models/deserializable.model';
+import { BaseModel } from '../../../shared/models/base.model';
+import { Orgao } from '../../orgaos/shared/orgao.model';
+import { TipoCategoria } from '../../tipos-categoria/shared/tipo-categoria.model';
+import {BaseResourceModel} from '../../../shared/models/base-resource.model';
 
-export class Categoria extends BaseModel implements Deserializable {
+export class Categoria extends BaseResourceModel implements Deserializable {
+  public id?: number;
   public tipo?: TipoCategoria;
   public nome?: string;
   public orgao?: Orgao;

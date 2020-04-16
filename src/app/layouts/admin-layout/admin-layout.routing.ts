@@ -15,8 +15,18 @@ export const AdminLayoutRoutes: Routes = [
     canActivate: [AuthGuardService],
   },
   {
-    path: 'tipo-categoria',
+    path: 'tipos-categoria',
     loadChildren:
-      '../../pages/tipo-categoria/tipo-categoria.module#TipoCategoriaModule',
+      '../../pages/tipos-categoria/tipos-categoria.module#TiposCategoriaModule',
   },
+  {
+    path: 'orgaos',
+    loadChildren:
+      '../../pages/orgaos/orgaos.module#OrgaosModule',
+  },
+  {
+    path: 'categorias',
+    loadChildren:
+      '../../pages/categorias/categorias.module#CategoriasModule',
+  }
 ];

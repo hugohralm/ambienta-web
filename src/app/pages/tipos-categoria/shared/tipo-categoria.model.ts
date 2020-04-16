@@ -1,5 +1,4 @@
-import { Deserializable } from '../../../models/deserializable.model';
-import { BaseModel } from '../../../shared/models/base.model';
+import {Deserializable} from '../../../models/deserializable.model';
 import {BaseResourceModel} from '../../../shared/models/base-resource.model';
 
 export class TipoCategoria extends BaseResourceModel implements Deserializable {
@@ -8,7 +7,9 @@ export class TipoCategoria extends BaseResourceModel implements Deserializable {
   public ativo?: boolean;
 
   static fromJson(json: any): TipoCategoria {
-    if (json === undefined || json === null) { return null; }
+    if (json === undefined || json === null) {
+      return null;
+    }
     return Object.assign(new TipoCategoria(), json);
   }
 

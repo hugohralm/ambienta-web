@@ -14,6 +14,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatDialogModule} from '@angular/material/dialog';
 import {ConfirmarExclusaoDialogComponent} from './components/confirmar-exclusao-dialog/confirmar-exclusao-dialog.component';
 import {MatSortModule} from '@angular/material/sort';
+import {NgxMaskModule} from 'ngx-mask';
 
 @NgModule({
   imports: [
@@ -31,7 +32,10 @@ import {MatSortModule} from '@angular/material/sort';
     MatCardModule,
     MatInputModule,
     MatDialogModule,
-    MatSortModule
+    MatSortModule,
+    NgxMaskModule.forRoot({
+      validation: true
+    })
   ],
   declarations: [
     ConfirmarExclusaoDialogComponent
@@ -53,9 +57,11 @@ import {MatSortModule} from '@angular/material/sort';
     MatInputModule,
     MatDialogModule,
     MatSortModule,
+    NgxMaskModule,
 
     // shared components
     ConfirmarExclusaoDialogComponent
   ]
 })
-export class SharedModule { }
+export class SharedModule {
+}

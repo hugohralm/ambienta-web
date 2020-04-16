@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {AuthenticationService} from '../../services/authentication.service';
 
 declare interface RouteInfo {
     path: string;
@@ -12,9 +13,9 @@ export const ROUTES: RouteInfo[] = [
 ];
 
 export const ROUTES_ADMIN: RouteInfo[] = [
-  { path: '/tipo-categoria', title: 'Tipo categoria',  icon: 'ni-bullet-list-67 text-red', class: '' },
-  { path: '/categoria', title: 'Categoria',  icon: 'ni-bullet-list-67 text-red', class: '' },
-  { path: '/orgao', title: 'Órgão',  icon: 'ni-bullet-list-67 text-red', class: '' }
+  { path: '/orgaos', title: 'Órgão',  icon: 'ni-bullet-list-67 text-red', class: '' },
+  { path: '/tipos-categoria', title: 'Tipo categoria',  icon: 'ni-bullet-list-67 text-red', class: '' },
+  { path: '/categorias', title: 'Categoria',  icon: 'ni-bullet-list-67 text-red', class: '' }
 ];
 
 @Component({
@@ -28,7 +29,7 @@ export class SidebarComponent implements OnInit {
   public menuAdminItems: any[];
   public isCollapsed = true;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
@@ -36,5 +37,12 @@ export class SidebarComponent implements OnInit {
     this.router.events.subscribe((event) => {
       this.isCollapsed = true;
    });
+  }
+
+  logout(): void {
+    this.authenticationService.logout();
+    this.router
+      .navigateByUrl('/', {skipLocationChange: true})
+      .then(() => this.router.navigate(['/login']));
   }
 }

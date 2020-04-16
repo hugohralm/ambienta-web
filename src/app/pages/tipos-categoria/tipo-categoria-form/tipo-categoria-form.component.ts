@@ -1,5 +1,5 @@
 import {Component, Injector} from '@angular/core';
-import {TipoCategoria} from 'src/app/pages/tipo-categoria/shared/tipo-categoria.model';
+import {TipoCategoria} from 'src/app/pages/tipos-categoria/shared/tipo-categoria.model';
 import {Validators} from '@angular/forms';
 import {BaseResourceFormComponent} from '../../../shared/components/base-resource-form/base-resource-form.component';
 import {TipoCategoriaService} from '../shared/tipo-categoria.service';
@@ -10,7 +10,7 @@ import {TipoCategoriaService} from '../shared/tipo-categoria.service';
   styleUrls: ['./tipo-categoria-form.component.scss']
 })
 export class TipoCategoriaFormComponent extends BaseResourceFormComponent<TipoCategoria> {
-  backRouterLink = '/tipo-categoria';
+  backRouterLink = '/tipos-categoria';
   constructor(protected tipoCategoriaService: TipoCategoriaService, protected injector: Injector) {
     super(injector, new TipoCategoria(), tipoCategoriaService, TipoCategoria.fromJson);
   }

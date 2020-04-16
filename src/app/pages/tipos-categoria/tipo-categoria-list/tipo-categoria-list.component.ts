@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {TipoCategoriaService} from 'src/app/pages/tipo-categoria/shared/tipo-categoria.service';
-import {TipoCategoria} from 'src/app/pages/tipo-categoria/shared/tipo-categoria.model';
+import {TipoCategoriaService} from 'src/app/pages/tipos-categoria/shared/tipo-categoria.service';
+import {TipoCategoria} from 'src/app/pages/tipos-categoria/shared/tipo-categoria.model';
 import {BaseResourceListComponent} from '../../../shared/components/base-resource-list/base-resource-list.component';
 
 @Component({

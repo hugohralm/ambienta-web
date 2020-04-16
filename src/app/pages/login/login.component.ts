@@ -16,7 +16,11 @@ export class LoginComponent implements OnInit, OnDestroy {
     private router: Router,
     private formBuilder: FormBuilder,
     private authenticationService: AuthenticationService
-  ) {}
+  ) {
+    if (this.authenticationService.currentUserTokenValue) {
+      this.router.navigate(['/']);
+    }
+  }
 
   ngOnInit() {
     this.buildForm();
