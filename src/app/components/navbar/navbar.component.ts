@@ -1,12 +1,11 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
-import { ROUTES, ROUTES_ADMIN } from '../sidebar/sidebar.component';
+import {Component, OnInit, ElementRef} from '@angular/core';
+import {ROUTES, ROUTES_ADMIN} from '../sidebar/sidebar.component';
 import {
-  Location,
-  LocationStrategy,
-  PathLocationStrategy,
+  Location
 } from '@angular/common';
-import { Router } from '@angular/router';
-import { AuthenticationService } from 'src/app/services/authentication.service';
+import {Router} from '@angular/router';
+import {AuthenticationService} from 'src/app/services/authentication.service';
+import {CurrentUser} from '../../models/current-user.model';
 
 @Component({
   selector: 'app-navbar',
@@ -18,6 +17,8 @@ export class NavbarComponent implements OnInit {
   public listTitles: any[];
   public listAdminTitles: any[];
   public location: Location;
+  currentUser: CurrentUser;
+
   constructor(
     location: Location,
     private element: ElementRef,
@@ -30,7 +31,9 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
     this.listTitles = ROUTES.filter((listTitle) => listTitle);
     this.listAdminTitles = ROUTES_ADMIN.filter((listTitle) => listTitle);
+    this.currentUser = this.authenticationService.currentUserDecode;
   }
+
   getTitle() {
     let titlee = this.location.prepareExternalUrl(this.location.path());
     if (titlee.charAt(0) === '#') {
@@ -50,5 +53,12 @@ export class NavbarComponent implements OnInit {
     }
 
     return 'Dashboard';
+  }
+
+  logout(): void {
+    this.authenticationService.logout();
+    this.router
+      .navigateByUrl('/', {skipLocationChange: true})
+      .then(() => this.router.navigate(['/login']));
   }
 }

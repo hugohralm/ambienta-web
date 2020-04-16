@@ -1,10 +1,10 @@
-import { BaseResourceModel } from '../models/base-resource.model';
+import {BaseResourceModel} from '../models/base-resource.model';
 
-import { Injector } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {Injector} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 
-import { Observable, throwError } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import {Observable, throwError} from 'rxjs';
+import {map, catchError} from 'rxjs/operators';
 import {environment} from '../../../environments/environment';
 
 export abstract class BaseResourceService<T extends BaseResourceModel> {
@@ -66,7 +66,7 @@ export abstract class BaseResourceService<T extends BaseResourceModel> {
   protected jsonDataToResources(jsonData: any[]): T[] {
     const resources: T[] = [];
     jsonData.forEach(
-      element => resources.push( this.jsonDataToResourceFn(element) )
+      element => resources.push(this.jsonDataToResourceFn(element))
     );
     return resources;
   }
@@ -76,7 +76,6 @@ export abstract class BaseResourceService<T extends BaseResourceModel> {
   }
 
   protected handleError(error: any): Observable<any> {
-    console.log('ERRO NA REQUISIÇÃO => ', error);
     return throwError(error);
   }
 }

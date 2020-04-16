@@ -13,6 +13,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
 import {MatDialogModule} from '@angular/material/dialog';
 import {ConfirmarExclusaoDialogComponent} from './components/confirmar-exclusao-dialog/confirmar-exclusao-dialog.component';
+import {MatSortModule} from '@angular/material/sort';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import {ConfirmarExclusaoDialogComponent} from './components/confirmar-exclusao-
     MatSelectModule,
     MatCardModule,
     MatInputModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSortModule
   ],
   declarations: [
     ConfirmarExclusaoDialogComponent
@@ -50,6 +52,7 @@ import {ConfirmarExclusaoDialogComponent} from './components/confirmar-exclusao-
     MatCardModule,
     MatInputModule,
     MatDialogModule,
+    MatSortModule,
 
     // shared components
     ConfirmarExclusaoDialogComponent
