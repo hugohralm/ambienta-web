@@ -9,7 +9,7 @@ import {Categoria} from '../shared/categoria.model';
   styleUrls: ['./categoria-list.component.scss']
 })
 export class CategoriaListComponent extends BaseResourceListComponent<Categoria> {
-  displayedColumns: string[] = ['id', 'nome', 'ativo', 'actions'];
+  displayedColumns: string[] = ['id', 'nome', 'tipo', 'orgao', 'ativo', 'actions'];
 
   constructor(
     private categoriaService: CategoriaService,
