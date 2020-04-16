@@ -10,10 +10,19 @@ import {BaseResourceListComponent} from '../../../shared/components/base-resourc
 })
 export class TipoCategoriaListComponent extends BaseResourceListComponent<TipoCategoria> {
   displayedColumns: string[] = ['id', 'nome', 'ativo', 'actions'];
+  public loading = true;
 
   constructor(
     private tipoCategoriaService: TipoCategoriaService,
   ) {
     super(tipoCategoriaService);
+  }
+
+  protected afterResourceLoad(): void {
+    this.loading = false;
+  }
+
+  protected afterResourceLoadError(): void {
+    this.loading = false;
   }
 }

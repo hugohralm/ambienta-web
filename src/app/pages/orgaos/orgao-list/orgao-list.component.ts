@@ -10,10 +10,14 @@ import {Orgao} from '../shared/orgao.model';
 })
 export class OrgaoListComponent extends BaseResourceListComponent<Orgao> {
   displayedColumns: string[] = ['id', 'nome', 'ativo', 'actions'];
-
+  public loading = true;
   constructor(
     private orgaoService: OrgaoService,
   ) {
     super(orgaoService);
+  }
+
+  protected afterResourceLoad(): void {
+    this.loading = false;
   }
 }
