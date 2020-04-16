@@ -1,7 +1,6 @@
-import {Deserializable} from '../../../models/deserializable.model';
 import {BaseResourceModel} from '../../../shared/models/base-resource.model';
 
-export class TipoCategoria extends BaseResourceModel implements Deserializable {
+export class TipoCategoria extends BaseResourceModel {
   public id?: number;
   public nome?: string;
   public ativo?: boolean;
@@ -11,10 +10,5 @@ export class TipoCategoria extends BaseResourceModel implements Deserializable {
       return null;
     }
     return Object.assign(new TipoCategoria(), json);
-  }
-
-  deserialize(input: any): this {
-    Object.assign(this, input);
-    return this;
   }
 }

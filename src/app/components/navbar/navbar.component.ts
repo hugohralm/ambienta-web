@@ -5,7 +5,7 @@ import {
 } from '@angular/common';
 import {Router} from '@angular/router';
 import {AuthenticationService} from 'src/app/services/authentication.service';
-import {CurrentUser} from '../../models/current-user.model';
+import {CurrentUser} from '../../shared/models/current-user.model';
 
 @Component({
   selector: 'app-navbar',

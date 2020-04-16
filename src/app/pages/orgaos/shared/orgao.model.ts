@@ -1,8 +1,6 @@
-import {Deserializable} from '../../../models/deserializable.model';
-import {BaseModel} from '../../../shared/models/base.model';
 import {BaseResourceModel} from '../../../shared/models/base-resource.model';
 
-export class Orgao extends BaseResourceModel implements Deserializable {
+export class Orgao extends BaseResourceModel {
   public id?: number;
   public nome?: string;
   public ativo?: boolean;
@@ -12,10 +10,5 @@ export class Orgao extends BaseResourceModel implements Deserializable {
       return null;
     }
     return Object.assign(new Orgao(), json);
-  }
-
-  deserialize(input: any): this {
-    Object.assign(this, input);
-    return this;
   }
 }

@@ -16,7 +16,7 @@
           </mat-form-field>
           <mat-form-field appearance="outline" class="col-6">
             <mat-label>Tipo categoria</mat-label>
-            <mat-select formControlName="tipo" required>
+            <mat-select [compareWith]="comparador" formControlName="tipo" required>
               <mat-option *ngFor="let tipo of tiposCategoria" [value]="tipo">
                 {{tipo.nome}}
               </mat-option>
@@ -26,7 +26,7 @@
         <div class="row">
           <mat-form-field appearance="outline" class="col-6">
             <mat-label>Órgão</mat-label>
-            <mat-select formControlName="orgao" required>
+            <mat-select [compareWith]="comparador" formControlName="orgao" required>
               <mat-option *ngFor="let orgao of orgaos" [value]="orgao">
                 {{orgao.nome}}
               </mat-option>

@@ -1,11 +1,11 @@
-import {UserToken} from '../models/user-token.model';
+import {UserToken} from '../shared/models/user-token.model';
 import {catchError} from 'rxjs/operators';
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable, throwError} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {environment} from 'src/environments/environment';
-import {CurrentUser} from '../models/current-user.model';
+import {CurrentUser} from '../shared/models/current-user.model';
 import * as jwt_decode from 'jwt-decode';
 
 @Injectable({providedIn: 'root'})

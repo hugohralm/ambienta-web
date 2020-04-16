@@ -9,17 +9,6 @@ import {SharedHelper} from '../../helper/shared-helper.model';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
 export abstract class BaseResourceFormComponent<T extends BaseResourceModel> implements OnInit, AfterContentChecked {
-  currentAction: string;
-  resourceForm: FormGroup;
-  pageTitle: string;
-  serverErrorMessages: string[] = null;
-  submittingForm = false;
-
-  protected route: ActivatedRoute;
-  protected router: Router;
-  protected snackBar: MatSnackBar;
-  protected formBuilder: FormBuilder;
-  protected toastrService: ToastrService;
 
   protected constructor(
     protected injector: Injector,
@@ -33,6 +22,18 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
     this.toastrService = this.injector.get(ToastrService);
     this.snackBar = this.injector.get(MatSnackBar);
   }
+  currentAction: string;
+  resourceForm: FormGroup;
+  pageTitle: string;
+  serverErrorMessages: string[] = null;
+  submittingForm = false;
+
+  protected route: ActivatedRoute;
+  protected router: Router;
+  protected snackBar: MatSnackBar;
+  protected formBuilder: FormBuilder;
+  protected toastrService: ToastrService;
+  comparador = (a: BaseResourceModel, b: BaseResourceModel) => a && b ? a.id === b.id : a === b;
 
   ngOnInit() {
     this.setCurrentAction();
