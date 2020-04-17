@@ -1,0 +1,52 @@
+<div class="header bg-gradient-success pb-8 pt-5 pt-md-8"></div>
+<!-- Page content -->
+<div class="container-fluid mt--9">
+  <!-- Table -->
+  <mat-card>
+    <mat-card-title class="d-flex justify-content-between">
+      <div class="align-self-center">USUÁRIO</div>
+      <button mat-raised-button class="d-flex justify-content-between">
+        <mat-icon>add</mat-icon>
+        ADICIONAR
+      </button>
+    </mat-card-title>
+    <mat-card-content>
+      <mat-table [dataSource]="dataSource" matSort>
+        <!-- Name Column -->
+        <ng-container matColumnDef="cpf">
+          <mat-header-cell mat-sort-header *matHeaderCellDef> CPF</mat-header-cell>
+          <mat-cell *matCellDef="let item"> {{item.cpf | mask: '000.000.000-00'}} </mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="nome">
+          <mat-header-cell mat-sort-header *matHeaderCellDef> Nome</mat-header-cell>
+          <mat-cell *matCellDef="let item"> {{item.nome}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
+          <mat-cell *matCellDef="let item">
+            <div>
+              <button mat-icon-button [matMenuTriggerFor]="moreMenu" aria-label="More"
+                      (click)="$event.stopPropagation();">
+                <mat-icon class="secondary-text">more_vert</mat-icon>
+              </button>
+
+              <mat-menu #moreMenu="matMenu">
+                <button mat-menu-item aria-label="edit">
+                  <mat-icon>edit</mat-icon>
+                  <span>Editar</span>
+                </button>
+              </mat-menu>
+            </div>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </mat-card-content>
+  </mat-card>
+</div>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px', fullScreenBackdrop: true }"></ngx-loading>
