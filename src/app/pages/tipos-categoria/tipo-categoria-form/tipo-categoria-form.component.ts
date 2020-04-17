@@ -1,4 +1,4 @@
-import {Component, Injector} from '@angular/core';
+import {Component, Injector, ViewEncapsulation} from '@angular/core';
 import {TipoCategoria} from 'src/app/pages/tipos-categoria/shared/tipo-categoria.model';
 import {Validators} from '@angular/forms';
 import {BaseResourceFormComponent} from '../../../shared/components/base-resource-form/base-resource-form.component';
@@ -7,7 +7,8 @@ import {TipoCategoriaService} from '../shared/tipo-categoria.service';
 @Component({
   selector: 'app-tipo-categoria-form',
   templateUrl: './tipo-categoria-form.component.html',
-  styleUrls: ['./tipo-categoria-form.component.scss']
+  styleUrls: ['./tipo-categoria-form.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class TipoCategoriaFormComponent extends BaseResourceFormComponent<TipoCategoria> {
   backRouterLink = '/tipos-categoria';

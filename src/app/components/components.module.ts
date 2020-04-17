@@ -5,13 +5,15 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule,
-    NgbModule
-  ],
+    imports: [
+        CommonModule,
+        RouterModule,
+        NgbModule,
+        MatExpansionModule
+    ],
   declarations: [
     FooterComponent,
     NavbarComponent,

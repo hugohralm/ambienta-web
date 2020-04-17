@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 import {BaseResourceListComponent} from '../../../shared/components/base-resource-list/base-resource-list.component';
 import {OrgaoService} from '../shared/orgao.service';
 import {Orgao} from '../shared/orgao.model';
@@ -6,7 +6,8 @@ import {Orgao} from '../shared/orgao.model';
 @Component({
   selector: 'app-orgao-list',
   templateUrl: './orgao-list.component.html',
-  styleUrls: ['./orgao-list.component.scss']
+  styleUrls: ['./orgao-list.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class OrgaoListComponent extends BaseResourceListComponent<Orgao> {
   displayedColumns: string[] = ['id', 'nome', 'ativo', 'actions'];

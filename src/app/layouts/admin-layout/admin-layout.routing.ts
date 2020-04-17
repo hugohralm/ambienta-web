@@ -28,5 +28,15 @@ export const AdminLayoutRoutes: Routes = [
     path: 'categorias',
     loadChildren:
       '../../pages/categorias/categorias.module#CategoriasModule',
+  },
+  {
+    path: 'usuarios',
+    loadChildren:
+      '../../pages/usuarios/usuarios.module#UsuariosModule',
+  },
+  {
+    path: 'denuncias',
+    loadChildren:
+      '../../pages/denuncias/denuncias.module#DenunciasModule',
   }
 ];

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 import {BaseResourceListComponent} from '../../shared/components/base-resource-list/base-resource-list.component';
 import {Denuncia} from '../denuncias/shared/denuncia.model';
 import {DenunciaService} from '../../services/denuncia.service';
@@ -9,13 +9,15 @@ declare const google: any;
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class DashboardComponent extends BaseResourceListComponent<Denuncia> {
   lat = '-16.6809646';
   lng = '-49.2557582';
   denunciasAnonimas: Denuncia[] = [];
   public loading = true;
+
   constructor(
     private denunciaService: DenunciaService,
     private locationService: LocationService
@@ -64,6 +66,16 @@ export class DashboardComponent extends BaseResourceListComponent<Denuncia> {
           title: denuncia.titulo
         });
 
+        const contentStringTeste = '<div id="content">' +
+          '<div id="siteNotice">' +
+          '</div>' +
+          '<h1 id="firstHeading" class="firstHeading">' + denuncia.titulo + '</h1>' +
+          '<div id="bodyContent" >' +
+          '<p style="margin-bottom: 0;">' + denuncia.descricao + '</p>' +
+          '<IMG style="max-width: 250px; width:100%; height: auto;" class="imageBorder" SRC="https://i.imgur.com/9ByhOFK.jpg">' +
+          '</div>' +
+          '</div>';
+
         const contentString = '<div id="content"><div id="siteNotice">' +
           '</div>' +
           '<h3 id="firstHeading" class="firstHeading">' + denuncia.titulo + '</h3>' +
@@ -73,7 +85,7 @@ export class DashboardComponent extends BaseResourceListComponent<Denuncia> {
 
         google.maps.event.addListener(marker, 'click', (function (mark) {
           return function () {
-            infowindow.setContent(contentString);
+            infowindow.setContent(contentStringTeste);
             infowindow.open(map, mark);
           };
         })(marker));
