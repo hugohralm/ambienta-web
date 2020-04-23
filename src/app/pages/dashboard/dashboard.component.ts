@@ -66,26 +66,26 @@ export class DashboardComponent extends BaseResourceListComponent<Denuncia> {
           title: denuncia.titulo
         });
 
-        const contentStringTeste = '<div id="content">' +
+        let evidenciasContent = '';
+        denuncia.evidencias.slice(0, 2).forEach(
+          (evidencia, index) => {
+            evidenciasContent = evidenciasContent +
+              '<IMG style="width:100px;height:100px;overflow:hidden;" SRC=' + evidencia.url + '>';
+          }
+        );
+
+        const contentString = '<div id="content">' +
           '<div id="siteNotice">' +
           '</div>' +
           '<h1 id="firstHeading" class="firstHeading">' + denuncia.titulo + '</h1>' +
           '<div id="bodyContent" >' +
-          '<p style="margin-bottom: 0;">' + denuncia.descricao + '</p>' +
-          '<IMG style="max-width: 250px; width:100%; height: auto;" class="imageBorder" SRC="https://i.imgur.com/9ByhOFK.jpg">' +
+          '<p style="margin-bottom: 0;">' + denuncia.descricao + '</p>' + evidenciasContent +
           '</div>' +
           '</div>';
 
-        const contentString = '<div id="content"><div id="siteNotice">' +
-          '</div>' +
-          '<h3 id="firstHeading" class="firstHeading">' + denuncia.titulo + '</h3>' +
-          '<div id="bodyContent">' +
-          '<p>' + denuncia.descricao + '</p>' +
-          '</div></div>';
-
         google.maps.event.addListener(marker, 'click', (function (mark) {
           return function () {
-            infowindow.setContent(contentStringTeste);
+            infowindow.setContent(contentString);
             infowindow.open(map, mark);
           };
         })(marker));
