@@ -15,6 +15,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {ConfirmarExclusaoDialogComponent} from './components/confirmar-exclusao-dialog/confirmar-exclusao-dialog.component';
 import {MatSortModule} from '@angular/material/sort';
 import {NgxMaskModule} from 'ngx-mask';
+import { ImageToObjectImagePipe } from './pipes/image-to-object-image.pipe';
 
 @NgModule({
   imports: [
@@ -38,30 +39,32 @@ import {NgxMaskModule} from 'ngx-mask';
     })
   ],
   declarations: [
-    ConfirmarExclusaoDialogComponent
+    ConfirmarExclusaoDialogComponent,
+    ImageToObjectImagePipe
   ],
-  exports: [
-    // shared modules
-    CommonModule,
-    ReactiveFormsModule,
-    RouterModule,
-    MatTableModule,
-    MatMenuModule,
-    MatIconModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    ReactiveFormsModule,
-    MatSnackBarModule,
-    MatSelectModule,
-    MatCardModule,
-    MatInputModule,
-    MatDialogModule,
-    MatSortModule,
-    NgxMaskModule,
+    exports: [
+        // shared modules
+        CommonModule,
+        ReactiveFormsModule,
+        RouterModule,
+        MatTableModule,
+        MatMenuModule,
+        MatIconModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        MatSnackBarModule,
+        MatSelectModule,
+        MatCardModule,
+        MatInputModule,
+        MatDialogModule,
+        MatSortModule,
+        NgxMaskModule,
 
-    // shared components
-    ConfirmarExclusaoDialogComponent
-  ]
+        // shared components
+        ConfirmarExclusaoDialogComponent,
+        ImageToObjectImagePipe
+    ]
 })
 export class SharedModule {
 }

@@ -48,7 +48,7 @@
               </button>
 
               <mat-menu #moreMenu="matMenu">
-                <button mat-menu-item aria-label="edit">
+                <button mat-menu-item aria-label="edit" [routerLink]="item.id+'/edit'">
                   <mat-icon>edit</mat-icon>
                   <span>Editar</span>
                 </button>

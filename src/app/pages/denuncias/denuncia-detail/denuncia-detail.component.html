@@ -1,0 +1,87 @@
+<div class="header bg-gradient-success pb-8 pt-5 pt-md-8"></div>
+<!-- Page content -->
+<div class="container-fluid mt--9">
+
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        {{pageTitle}}
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="col" [formGroup]="resourceForm">
+      <div class="row">
+        <mat-form-field appearance="outline" class="col-md-3">
+          <mat-label>Titulo</mat-label>
+          <input matInput formControlName="titulo" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-md-3">
+          <mat-label>Status</mat-label>
+          <input matInput formControlName="status" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-md-3">
+          <mat-label>Categoria</mat-label>
+          <mat-select [compareWith]="comparador" formControlName="categoria" required>
+            <mat-optgroup *ngFor="let tipoCategoria of tipoCategorias" [label]="tipoCategoria.nome">
+              <mat-option *ngFor="let tipo of tipoCategoria.categorias" [value]="tipo">
+                {{tipo.nome}}
+              </mat-option>
+            </mat-optgroup>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-md-3">
+          <mat-label>Código</mat-label>
+          <input matInput formControlName="codigoAcompanhamento" required>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+
+        <mat-form-field appearance="outline" class="col-12">
+          <mat-label>Descrição</mat-label>
+          <textarea matInput formControlName="descricao" required></textarea>
+        </mat-form-field>
+
+      </div>
+
+      <div *ngIf="resourceForm.controls.cpfDenunciante.value" class="row">
+
+        <mat-form-field appearance="outline" class="col-md-4">
+          <mat-label>CPF denunciante</mat-label>
+          <input matInput formControlName="cpfDenunciante" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-md-4">
+          <mat-label>Nome denunciante</mat-label>
+          <input matInput formControlName="nomeDenunciante" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-md-4">
+          <mat-label>E-mail denunciante</mat-label>
+          <input matInput formControlName="email" required>
+        </mat-form-field>
+
+      </div>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Evidências</mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <mat-grid-list [cols]="colums" rowHeight="1:1" gutterSize="8px" (window:resize)="onResize($event)">
+          <mat-grid-tile *ngFor="let evidencia of resource.evidencias; let i = index" class="image-list">
+            <img [src]="evidencia.url" (click)="showLightbox(i)">
+          </mat-grid-tile>
+        </mat-grid-list>
+      </mat-expansion-panel>
+
+    </mat-card-content>
+  </mat-card>
+</div>
+<ng-image-fullscreen-view
+  [images]="resource.evidencias | imageToObjectImagePipe"
+  [imageIndex]="selectedImageIndex"
+  [show]="showFlag"
+  (close)="closeEventHandler()"></ng-image-fullscreen-view>
