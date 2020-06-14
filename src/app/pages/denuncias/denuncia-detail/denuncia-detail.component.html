@@ -17,7 +17,7 @@
 
         <mat-form-field appearance="outline" class="col-md-3">
           <mat-label>Status</mat-label>
-          <input matInput formControlName="status" required>
+          <input matInput formControlName="status" readonly required>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="col-md-3">
@@ -33,7 +33,7 @@
 
         <mat-form-field appearance="outline" class="col-md-3">
           <mat-label>Código</mat-label>
-          <input matInput formControlName="codigoAcompanhamento" required>
+          <input matInput formControlName="codigoAcompanhamento" readonly required>
         </mat-form-field>
       </div>
 
@@ -65,7 +65,7 @@
 
       </div>
 
-      <mat-expansion-panel>
+      <mat-expansion-panel class="mt-3">
         <mat-expansion-panel-header>
           <mat-panel-title>Evidências</mat-panel-title>
         </mat-expansion-panel-header>
@@ -77,6 +77,29 @@
         </mat-grid-list>
       </mat-expansion-panel>
 
+      <mat-expansion-panel class="mt-3">
+        <mat-expansion-panel-header>
+          <mat-panel-title>Localização</mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div class="card shadow border-success">
+          <div id="map-canvas" class="map-canvas" style="height: 600px;"></div>
+        </div>
+      </mat-expansion-panel>
+
+      <div class="row justify-content-end mt-3">
+        <button mat-raised-button color="primary" [routerLink]="backRouterLink">
+          <mat-icon>keyboard_backspace</mat-icon>
+          Voltar
+        </button>
+
+        <button mat-raised-button type="submit" color="primary" style="margin-left: 10px"
+                [disabled]="!resourceForm.valid || resourceForm.pristine"
+                (click)="submitForm()">
+          <mat-icon>save</mat-icon>
+          Salvar
+        </button>
+      </div>
     </mat-card-content>
   </mat-card>
 </div>

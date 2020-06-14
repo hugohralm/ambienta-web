@@ -6,17 +6,20 @@ import {SharedHelper} from "../../../shared/helper/shared-helper.model";
 import {TipoCategoriaService} from "../../tipos-categoria/shared/tipo-categoria.service";
 import {TipoCategoria} from "../../tipos-categoria/shared/tipo-categoria.model";
 
+declare const google: any;
+
 @Component({
   selector: 'app-denuncia-detail',
   templateUrl: './denuncia-detail.component.html',
   styleUrls: ['./denuncia-detail.component.scss']
 })
-export class DenunciaDetailComponent extends BaseResourceFormComponent<Denuncia>  implements OnInit {
+
+export class DenunciaDetailComponent extends BaseResourceFormComponent<Denuncia> implements OnInit {
   colums: number = 0;
   tipoCategorias: TipoCategoria[];
   selectedImageIndex: number = -1;
+  backRouterLink = '/denuncias';
   showFlag: boolean;
-  appImageViewer;
 
   constructor(
     protected injector: Injector,
@@ -31,13 +34,13 @@ export class DenunciaDetailComponent extends BaseResourceFormComponent<Denuncia>
 
   ngOnInit() {
     super.ngOnInit();
-    this.colums = (window.innerWidth <= 600)? 1 : (window.innerWidth <= 960)? 2 : 4;
+    this.colums = (window.innerWidth <= 600) ? 1 : (window.innerWidth <= 960) ? 2 : 4;
   }
 
   protected buildResourceForm(): void {
     this.resourceForm = this.formBuilder.group({
       id: [null],
-      codigoAcompanhamento: [{value: null, disabled: true}],//
+      codigoAcompanhamento: [null],//
       status: [null],//
       titulo: [null],//
       descricao: [null],//
@@ -54,8 +57,36 @@ export class DenunciaDetailComponent extends BaseResourceFormComponent<Denuncia>
     });
   }
 
+  protected afterResourceLoad(): void {
+    this.carregarMapa();
+  }
+
+  private carregarMapa(): void {
+    let map = document.getElementById('map-canvas');
+
+    const myLatlng = new google.maps.LatLng(this.resource.latitude, this.resource.longitude);
+    const mapOptions = {
+      zoom: 17,
+      scrollwheel: false,
+      center: myLatlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    map = new google.maps.Map(map, mapOptions);
+
+    //ADICIONAR PONTO
+
+    new google.maps.Marker({
+      position: new google.maps.LatLng(this.resource.latitude, this.resource.longitude),
+      map: map,
+      title: this.resource.titulo
+    });
+
+
+  }
+
   onResize(event: any) {
-    this.colums = (event.target.innerWidth <= 600)? 1 : (event.target.innerWidth <= 960)? 2 : 4
+    this.colums = (event.target.innerWidth <= 600) ? 1 : (event.target.innerWidth <= 960) ? 2 : 4
   }
 
   showLightbox(index) {
