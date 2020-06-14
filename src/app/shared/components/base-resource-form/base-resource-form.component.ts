@@ -74,6 +74,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
           (resource) => {
             this.resource = resource;
             this.resourceForm.patchValue(resource); // binds loaded resource data to resourceForm
+            this.afterResourceLoad();
           },
           (error) => alert('Ocorreu um erro no servidor, tente mais tarde.')
         );
@@ -138,4 +139,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
   }
 
   protected abstract buildResourceForm(): void;
+
+
+  protected afterResourceLoad(): void {}
 }

@@ -70,14 +70,15 @@ export class DashboardComponent extends BaseResourceListComponent<Denuncia> {
         denuncia.evidencias.slice(0, 2).forEach(
           (evidencia, index) => {
             evidenciasContent = evidenciasContent +
-              '<IMG style="width:100px;height:100px;overflow:hidden;" SRC=' + evidencia.url + '>';
+              '<IMG style="width:100px;height:100px;overflow:hidden;padding: 2px;border: 1px solid rgba(0, 0, 0, 0.22)" SRC=' + evidencia.url + '>';
           }
         );
 
         const contentString = '<div id="content">' +
           '<div id="siteNotice">' +
           '</div>' +
-          '<h1 id="firstHeading" class="firstHeading">' + denuncia.titulo + '</h1>' +
+          '<h1 id="firstHeading" class="firstHeading">' + `ID:${denuncia.id}` + '</h1>' +
+          '<h1 id="firstHeading" class="firstHeading">' +  denuncia.titulo + '</h1>' +
           '<div id="bodyContent" >' +
           '<p style="margin-bottom: 0;">' + denuncia.descricao + '</p>' + evidenciasContent +
           '</div>' +
