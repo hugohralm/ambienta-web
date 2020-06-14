@@ -34,7 +34,7 @@
 
         <!-- Status Column -->
         <ng-container matColumnDef="status">
-          <mat-header-cell *matHeaderCellDef> Status</mat-header-cell>
+          <mat-header-cell mat-sort-header *matHeaderCellDef> Status</mat-header-cell>
           <mat-cell *matCellDef="let item"> {{getStatusDenunciaTexto(item?.status)}} </mat-cell>
         </ng-container>
 

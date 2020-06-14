@@ -13,13 +13,25 @@ import {ENUM_STATUS_DENUNCIA_VALUES, EnumStatusDenuncia} from '../shared/status-
 export class DenunciaListComponent extends BaseResourceListComponent<Denuncia> {
   displayedColumns: string[] = ['id', 'titulo', 'categoria', 'cadastro', 'status', 'actions'];
   public loading = true;
+
   constructor(
     private denunciaService: DenunciaService,
   ) {
     super(denunciaService);
   }
+
   protected afterResourceLoad(): void {
     this.loading = false;
+    this.dataSource.sortingDataAccessor = (item, property) => {
+      switch (property) {
+        case 'categoria':
+          return item.categoria.nome;
+        case 'cadastro':
+          return item.dataCadastro;
+        default:
+          return item[property];
+      }
+    };
   }
 
   getStatusDenunciaTexto(status: string): string {
