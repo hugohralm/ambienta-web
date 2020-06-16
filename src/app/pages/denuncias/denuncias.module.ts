@@ -4,9 +4,9 @@ import {DenunciasRoutingModule} from './denuncias-routing.module';
 import {NgxLoadingModule} from 'ngx-loading';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {DenunciaListComponent} from './denuncia-list/denuncia-list.component';
-import {DenunciaDetailComponent} from "./denuncia-detail/denuncia-detail.component";
-import {MatExpansionModule} from "@angular/material/expansion";
-import {NgImageFullscreenViewModule} from "ng-image-fullscreen-view";
+import {DenunciaDetailComponent} from './denuncia-detail/denuncia-detail.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {NgImageFullscreenViewModule} from 'ng-image-fullscreen-view';
 
 @NgModule({
   imports: [

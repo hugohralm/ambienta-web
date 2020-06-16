@@ -2,8 +2,10 @@ import {Categoria} from '../../categorias/shared/categoria.model';
 import {BaseResourceModel} from '../../../shared/models/base-resource.model';
 import {Municipio} from '../../../shared/models/municipio.model';
 import {Evidencia} from './evidencia.model';
+import {RespostaDenuncia} from './reposta-denuncia.model';
 
 export class Denuncia extends BaseResourceModel {
+
   public id?: number;
   public dataCadastro?: Date;
   public codigoAcompanhamento?: string;
@@ -20,6 +22,7 @@ export class Denuncia extends BaseResourceModel {
   public email?: string;
   public nomeDenunciado?: string;
   public evidencias?: Evidencia[];
+  public respostas?: RespostaDenuncia[];
 
   static fromJson(json: any): Denuncia {
     if (json === undefined || json === null) {
