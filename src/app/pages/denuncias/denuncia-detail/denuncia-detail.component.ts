@@ -19,7 +19,7 @@ declare const google: any;
 })
 
 export class DenunciaDetailComponent extends BaseResourceFormComponent<Denuncia> implements OnInit {
-  displayedColumns: string[] = ['id', 'cadastro', 'status', 'descricao', 'usuario'];
+  displayedColumns: string[] = ['cadastro', 'status', 'descricao', 'usuario'];
   colums = 0;
   tipoCategorias: TipoCategoria[];
   selectedImageIndex = -1;
