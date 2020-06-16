@@ -34,7 +34,7 @@
       <div class="row">
         <mat-form-field appearance="outline" class="col-12">
           <mat-label>Descrição</mat-label>
-          <input matInput formControlName="descricao" readonly>
+          <textarea matInput formControlName="descricao" readonly></textarea>
         </mat-form-field>
       </div>
 
@@ -77,72 +77,73 @@
         </div>
       </mat-expansion-panel>
 
+
+      <mat-card class="mat-elevation-z0" style="margin-top: 10px">
+        <mat-card-title class="d-flex justify-content-center">
+          Respostas
+        </mat-card-title>
+
+        <mat-card-content class="col" [formGroup]="respostaForm">
+          <div class="row">
+            <mat-form-field appearance="outline" class="col-2">
+              <mat-label>Status</mat-label>
+              <mat-select formControlName="status" required placeholder="Selecione...">
+                <mat-option *ngFor="let status of statusRespostaDenuncia" [value]="status.valor">
+                  {{status.descricao}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="col-7">
+              <mat-label>Descrição</mat-label>
+              <input matInput formControlName="descricao" required>
+            </mat-form-field>
+
+            <div class="justify-content-end mt-3">
+              <button mat-raised-button color="primary" (click)="addRespostaDenuncia()">
+                <mat-icon>add</mat-icon>
+                Adicionar Resposta
+              </button>
+            </div>
+          </div>
+
+          <mat-table [dataSource]="respostas" matSort>
+            <!-- Data Cadastro Column -->
+            <ng-container matColumnDef="cadastro">
+              <mat-header-cell mat-sort-header *matHeaderCellDef>Data Cadastro</mat-header-cell>
+              <mat-cell *matCellDef="let item"> {{item?.dataCadastro | date:'dd/MM/yyyy HH:mm'}} </mat-cell>
+            </ng-container>
+
+            <!-- Status Column -->
+            <ng-container matColumnDef="status">
+              <mat-header-cell mat-sort-header *matHeaderCellDef>Status</mat-header-cell>
+              <mat-cell *matCellDef="let item"> {{getStatusDenunciaTexto(item?.status)}} </mat-cell>
+            </ng-container>
+
+            <!-- Descrição Column -->
+            <ng-container matColumnDef="descricao">
+              <mat-header-cell mat-sort-header *matHeaderCellDef>Descrição</mat-header-cell>
+              <mat-cell *matCellDef="let item"> {{item?.descricao}} </mat-cell>
+            </ng-container>
+
+            <!-- Usuario Column -->
+            <ng-container matColumnDef="usuario">
+              <mat-header-cell mat-sort-header *matHeaderCellDef>Usuario</mat-header-cell>
+              <mat-cell *matCellDef="let item"> {{item?.usuario?.nome}} </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+        </mat-card-content>
+      </mat-card>
+
       <div class="row justify-content-start mt-3">
         <button mat-raised-button color="primary" [routerLink]="backRouterLink">
           <mat-icon>arrow_back</mat-icon>
           Voltar
         </button>
       </div>
-    </mat-card-content>
-  </mat-card>
-
-  <mat-card style="margin-top: 10px">
-    <mat-card-title class="d-flex justify-content-center">
-      Respostas
-    </mat-card-title>
-
-    <mat-card-content class="col" [formGroup]="respostaForm">
-      <div class="row">
-        <mat-form-field appearance="outline" class="col-md-2">
-          <mat-label>Status</mat-label>
-          <mat-select formControlName="status" required placeholder="Selecione...">
-            <mat-option *ngFor="let status of statusRespostaDenuncia" [value]="status.valor">
-              {{status.descricao}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="col-md-7">
-          <mat-label>Descrição</mat-label>
-          <input matInput formControlName="descricao" placeholder="Descrição da resposta" required>
-        </mat-form-field>
-
-        <div class="justify-content-end mt-3">
-          <button mat-raised-button color="primary" (click)="addRespostaDenuncia()">
-            <mat-icon>add</mat-icon>
-            Adicionar Resposta
-          </button>
-        </div>
-      </div>
-
-      <mat-table [dataSource]="respostas" matSort>
-        <!-- Data Cadastro Column -->
-        <ng-container matColumnDef="cadastro">
-          <mat-header-cell mat-sort-header *matHeaderCellDef>Data Cadastro</mat-header-cell>
-          <mat-cell *matCellDef="let item"> {{item?.dataCadastro | date:'dd/MM/yyyy HH:mm'}} </mat-cell>
-        </ng-container>
-
-        <!-- Status Column -->
-        <ng-container matColumnDef="status">
-          <mat-header-cell mat-sort-header *matHeaderCellDef>Status</mat-header-cell>
-          <mat-cell *matCellDef="let item"> {{getStatusDenunciaTexto(item?.status)}} </mat-cell>
-        </ng-container>
-
-        <!-- Descrição Column -->
-        <ng-container matColumnDef="descricao">
-          <mat-header-cell mat-sort-header *matHeaderCellDef>Descrição</mat-header-cell>
-          <mat-cell *matCellDef="let item"> {{item?.descricao}} </mat-cell>
-        </ng-container>
-
-        <!-- Usuario Column -->
-        <ng-container matColumnDef="usuario">
-          <mat-header-cell mat-sort-header *matHeaderCellDef>Usuario</mat-header-cell>
-          <mat-cell *matCellDef="let item"> {{item?.usuario?.nome}} </mat-cell>
-        </ng-container>
-
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-      </mat-table>
     </mat-card-content>
   </mat-card>
 </div>
